@@ -103,6 +103,7 @@ $autoload['helper'] = array();
 | config files.  Otherwise, leave it blank.
 |
 */
+$config['base_url'] = 'http://localhost/Hackathon_laily/';
 $autoload['config'] = array();
 
 /*

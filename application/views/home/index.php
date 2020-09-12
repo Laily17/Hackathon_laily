@@ -36,11 +36,12 @@ $data = json_decode($curl, TRUE);
   <div class="container text-center">
     <h1 class="display-4">COVID-19</h1>
     <p class="lead">
-    	<h2>PENYEBARAN VIRUS CORONA DI INDONESIA
+    	<h2>PENYEBARAN VIRUS CORONA DI DUNIA
     		<br>
     		REAL-TIME
-    		<br>
-
+		  <br>
+		  <br>
+		  <a class="btn btn-info" href="http://localhost/Hackathon_laily/infodetail" type="button">Info Detail</a>
     	</h2>
     
     </p>
@@ -54,7 +55,7 @@ $data = json_decode($curl, TRUE);
 				<div class="row">
 					<div class="col-md-6">
 						<h5> Positif </h5>
-						<h2 ><?= $data[23]['cases']?></h2>
+						<h2 ><?= $data[0]['cases']?></h2>
 						<h5>Orang</h5>
 					</div>
 
@@ -69,7 +70,7 @@ $data = json_decode($curl, TRUE);
 				<div class="row">
 					<div class="col-md-6">
 						<h5> Meninggal </h5>
-						<h2><?= $data[23]['deaths']?></h2>
+						<h2><?= $data[0]['deaths']?></h2>
 						<h5>Orang</h5>
 					</div>
 
@@ -79,12 +80,12 @@ $data = json_decode($curl, TRUE);
 				</div>
 			</div>
 		</div>
-				<div class="col-md-4">
+		<div class="col-md-4">
 			<div class="bg-success box text-white">
 				<div class="row">
 					<div class="col-md-6">
 						<h5> Sembuh </h5>
-						<h2><?= $data[23]['recovered']?></h2>
+						<h2><?= $data[0]['recovered']?></h2>
 						<h5>Orang</h5>
 					</div>
 
@@ -94,6 +95,8 @@ $data = json_decode($curl, TRUE);
 				</div>
 			</div>
 		</div>
+
+
 
 	</div>
 </div>

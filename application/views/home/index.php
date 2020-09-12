@@ -1,3 +1,19 @@
+<?php
+function curl($url){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $output = curl_exec($ch);
+    curl_close($ch);
+    return $output;
+}
+
+$curl = curl("https://coronavirus-19-api.herokuapp.com/countries");
+
+// mengubah JSON menjadi array
+$data = json_decode($curl, TRUE);
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -38,7 +54,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<h5> Positif </h5>
-						<h2 id="data-kasus"></h2>
+						<h2 ><?= $data[23]['cases']?></h2>
 						<h5>Orang</h5>
 					</div>
 
@@ -52,8 +68,8 @@
 			<div class="bg-info box text-white">
 				<div class="row">
 					<div class="col-md-6">
-						<h5> 	Meninggal </h5>
-						<h2 id="data-mati"></h2>
+						<h5> Meninggal </h5>
+						<h2><?= $data[23]['deaths']?></h2>
 						<h5>Orang</h5>
 					</div>
 
@@ -68,7 +84,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<h5> Sembuh </h5>
-						<h2 id="data-sembuh"></h2>
+						<h2><?= $data[23]['recovered']?></h2>
 						<h5>Orang</h5>
 					</div>
 
@@ -93,43 +109,3 @@
   </body>
 </html>
 
-<script>
-	$(document).ready(function(){
-
-//panggil fungsi menampilkan semua data global
-
-		function dataNegara(){
-			$.ajax({
-				url :'https://coronavirus-19-api.herokuapp.com/countries',
-				secess : function(data){
-					try{
-						var json = data;
-						
-						if (json.length > 0) {
-							var i;
-							for (var i =0 ; i<json.length; i++) {
-								var dataNegara = json[i];
-								var namaNegara = dataNegara.country;
-
-								if(namaNegara === 'Indonesia'){
-									var kasus = dataNegara.cases;
-									var mati = dataNegara.deaths;
-									var sembuh = dataNegara.recovered;
-									$('#data-kasus').html(kasus);
-									$('#data-mati').html(mati);
-									$('#data-sembuh').html(sembuh);
-								}
-							}
-						}
-
-
-					}
-					catch{
-						alert('Error');
-					}
-				}
-			});
-		}
-
-	});
-</script>
